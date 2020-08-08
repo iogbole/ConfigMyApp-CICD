@@ -64,7 +64,7 @@ node {
               cp ../bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
 
-            ls -ltr
+            #ls -ltr
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
