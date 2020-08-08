@@ -63,11 +63,11 @@ node {
             pwd
 
             ls ${workspace}@script/
-            
+
             ls ${workspace}
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
-              cp ../bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
+              cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
 
             #ls -ltr
