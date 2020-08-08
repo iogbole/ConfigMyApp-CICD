@@ -3,9 +3,11 @@ def label = "worker-${UUID.randomUUID().toString()}"
 properties(
   [parameters(
     [
-      string(defaultValue: 'appd-test-qa', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
+      string(defaultValue: 'IoT_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
       choice(choices: ['configmyappdemo-2044no-uzyczrm0.appd-cx.com', 'dev-configmyappdemo-2044no-uzyczrm0.appd-cx.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
       choice(choices: ['customer1', 'dev-customer1'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
+      string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
+      booleanParam(defaultValue: 'false', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
       booleanParam(defaultValue: false, description: 'Include Server visibility', name: 'CMA_INCLUDE_SIM'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
       booleanParam(defaultValue: false, description: 'Add Business Transactions', name: 'CMA_CONFIGURE_BT'),
@@ -16,19 +18,24 @@ properties(
   ]
 )
 
- pipeline {
+node {
+ 	// Clean workspace before doing anything
+    deleteDir()
+  try {
 
-    agent { docker { image 'ubuntu' } }
-    
-    stage('Add Dashboard') {     
+      stage ('Clone') {
+        	checkout scm
+        }
+
+       stage('ConfigMyApp') {  
         
-           // withCredentials([usernamePassword(credentialsId: 'appd-configmyapp', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
-          sh """
-            echo "ConfigMyApp...start"
-
+           withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
+            sh """
+            echo "ConfigMyApp...start"  
             export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
             export CMA_CONTROLLER_HOST=${params.CMA_CONTROLLER_HOST}
-            export CMA_USE_HTTPS=true
+            export CMA_USE_HTTPS=${params.CMA_USE_HTTPS}
+            export CMA_CONTROLLER_PORT=${params.CMA_CONTROLLER_PORT}
             export CMA_BT_ONLY=${params.CMA_BT_ONLY}
             export CMA_ACCOUNT=${params.CMA_ACCOUNT}
             export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
@@ -42,7 +49,7 @@ properties(
 
             ls -ltr
 
-            apt-get install unzip -y
+            # apt-get install unzip -y
             unzip ConfigMyApp.zip
             cd ConfigMyApp-* 
 
@@ -61,13 +68,20 @@ properties(
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
-              ./start.sh --controller-port=443 --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
             else
-              ./start.sh --controller-port=443 --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
             fi
             echo "End script"
           """
-        }
+        
       }
+       }
+      }catch (err) {
+        currentBuild.result = 'FAILED'
+        throw err
+    }
+ } 
+
  
 
