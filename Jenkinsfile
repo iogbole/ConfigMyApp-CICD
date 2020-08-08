@@ -59,6 +59,12 @@ node {
             curl -o "branding/background.jpg" \$background 
             logo="https://user-images.githubusercontent.com/2548160/88204707-9a310380-cc43-11ea-9149-561199f144af.png"
             curl -o "branding/logo.png" \$logo 
+            
+            pwd
+
+            ls ${workspace}@script/
+            
+            ls ${workspace}
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ../bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
