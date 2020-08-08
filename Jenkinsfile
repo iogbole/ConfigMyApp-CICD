@@ -19,8 +19,9 @@ properties(
  pipeline {
 
     agent { docker { image 'ubuntu' } }
-    
-    stage('Add Dashboard') {     
+      stages {
+       stage('Add Dashboard') {     
+         steps {
         
            // withCredentials([usernamePassword(credentialsId: 'appd-configmyapp', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
           sh """
@@ -69,5 +70,7 @@ properties(
           """
         }
       }
+      }
+ }
  
 
