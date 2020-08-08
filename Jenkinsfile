@@ -16,20 +16,15 @@ properties(
   ]
 )
 
-podTemplate(label: label, 
-containers: [
-  containerTemplate(name: 'kubectl3-pip', image: '627822851775.dkr.ecr.eu-west-1.amazonaws.com/cloudbees:kubectl3-pip', command: 'cat', ttyEnabled: true)
-]) {
-
-  node(label) {
+  node('docker') {
 
     stage('Clone code') {
         checkout scm
     }
 
-    stage('Add Dashboard') {    
-      container('kubectl3-pip') {
-        withCredentials([usernamePassword(credentialsId: 'appd-configmyapp', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
+    stage('Add Dashboard') {     
+        docker.image('ubuntu').inside {
+           // withCredentials([usernamePassword(credentialsId: 'appd-configmyapp', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
           sh """
             echo "ConfigMyApp...start"
 
@@ -77,5 +72,5 @@ containers: [
         }
       }
     } 
-  }
-}
+ // }
+
