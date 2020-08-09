@@ -13,18 +13,20 @@ pool:
    tags: configmyapp,demo
 
 # Set variables once as shown below, use the UI 
-#variables:
-  #CMA_CONTROLLER_HOST: configmyappdemo-2044no-uzyczrm0.appd-cx.com
-  #CMA_CONTROLLER_PORT: 8090
-  #CMA_ACCOUNT: customer1
-  #CMA_USE_HTTPS: false
-  #CMA_USERNAME: appd
-  #CMA_CONFIGURE_BT: false
-  #CMA_INCLUDE_SIM: true
-  #CMA_BT_ONLY: false
-  #CMA_INCLUDE_DATABASE : false
-  #CMA_OVERWRITE_HEALTH_RULES: true
-  #CMA_DATABASE_NAME: ConfigMyApp
+variables:
+  CMA_APPLICATION_NAME: IoT_API
+  CMA_CONTROLLER_HOST: configmyappdemo-2044no-uzyczrm0.appd-cx.com
+  CMA_CONTROLLER_PORT: 8090
+  CMA_ACCOUNT: customer1
+  CMA_USE_HTTPS: false
+  CMA_USERNAME: appd
+  CMA_PASSWORD: $CMA_PASSWORD 
+  CMA_CONFIGURE_BT: false
+  CMA_INCLUDE_SIM: true
+  CMA_BT_ONLY: false
+  CMA_INCLUDE_DATABASE : false
+  CMA_OVERWRITE_HEALTH_RULES: true
+  CMA_DATABASE_NAME: ConfigMyApp
 
 steps:
 - script: |
