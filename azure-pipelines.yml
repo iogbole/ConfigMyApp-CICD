@@ -51,13 +51,11 @@ steps:
     logo="https://user-images.githubusercontent.com/2548160/88204707-9a310380-cc43-11ea-9149-561199f144af.png"
     curl -o "branding/logo.png" $logo 
 
-
-    #if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
-    #                  cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
-    #                fi
-      ./start.sh  --include-database --database-name='tes' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
-     # else
-     #  ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
-     # fi
+    if [ "$CMA_BT_ONLY" = true ] || [ "$CMA_CONFIGURE_BT" = true ]; then
+       cp ../bt_config/$CMA_APPLICATION_NAME-configBT.json bt_config/configBT.json
+       ./start.sh  --include-database --database-name='tes' --use-branding --logo-name="logo.png" --background-name="background.jpg" 
+    else
+       ./start.sh  --use-branding --logo-name="logo.png" --background-name="background.jpg" 
+    fi
     echo "End script"
   displayName: 'Run a multi-line script'
