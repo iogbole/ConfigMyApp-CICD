@@ -12,8 +12,21 @@ pool:
    resourceType: VirtualMachine
    tags: configmyapp,demo
 
-steps:
+# Set variables once
+variables:
+  CMA_CONTROLLER_HOST: configmyappdemo-2044no-uzyczrm0.appd-cx.com
+  CMA_CONTROLLER_PORT: 8090
+  CMA_USE_HTTPS: false
+  CMA_ACCOUNT: customer1
+  CMA_USERNAME: appd
+  CMA_INCLUDE_SIM: true
+  CMA_CONFIGURE_BT: false
+  CMA_BT_ONLY: false
+  CMA_OVERWRITE_HEALTH_RULES: true
+  CMA_INCLUDE_DATABASE : false
+  CMA_DATABASE_NAME: ConfigMyApp
 
+steps:
 - script: |
     # Write your commands here
     
