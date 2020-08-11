@@ -20,7 +20,6 @@ variables:
   CMA_ACCOUNT: customer1
   CMA_USE_HTTPS: false
   CMA_USERNAME: appd
-  CMA_PASSWORD: $CMA_PASSWORD 
   CMA_CONFIGURE_BT: false
   CMA_INCLUDE_SIM: true
   CMA_BT_ONLY: false
@@ -60,3 +59,6 @@ steps:
     fi
     echo "End script"
   displayName: 'Run ConfigMyApp'
+  env:
+    CMA_PASSWORD: $(CMA_PASSWORD)
+     
