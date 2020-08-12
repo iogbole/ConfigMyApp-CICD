@@ -20,7 +20,7 @@ variables:
   CMA_ACCOUNT: customer1
   CMA_USE_HTTPS: false
   CMA_USERNAME: appd
-  #CMA_CONFIGURE_BT: false
+  CMA_CONFIGURE_BT: true
   #CMA_INCLUDE_SIM: true
   #CMA_BT_ONLY: false
   #CMA_INCLUDE_DATABASE : false
