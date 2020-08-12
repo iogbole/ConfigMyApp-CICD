@@ -9,23 +9,23 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
   environment:
-   name: 'CMA-env'
+   name: 'CMA'
    tags: configmyapp
 
 # Set variables once as shown below, use the UI 
 variables:
-  CMA_APPLICATION_NAME: IoT_API
+  #CMA_APPLICATION_NAME: IoT_API
   CMA_CONTROLLER_HOST: configmyappdemo-2044no-uzyczrm0.appd-cx.com
   CMA_CONTROLLER_PORT: 8090
   CMA_ACCOUNT: customer1
   CMA_USE_HTTPS: false
   CMA_USERNAME: appd
-  CMA_CONFIGURE_BT: false
-  CMA_INCLUDE_SIM: true
-  CMA_BT_ONLY: false
-  CMA_INCLUDE_DATABASE : false
+  #CMA_CONFIGURE_BT: false
+  #CMA_INCLUDE_SIM: true
+  #CMA_BT_ONLY: false
+  #CMA_INCLUDE_DATABASE : false
   CMA_OVERWRITE_HEALTH_RULES: true
-  CMA_DATABASE_NAME: ConfigMyApp
+  #CMA_DATABASE_NAME: ConfigMyApp
 
 steps:
 - script: |
@@ -65,4 +65,11 @@ steps:
   env:
     CMA_PASSWORD: $(CMA_PASSWORD)
     CMA_APPLICATION_NAME: $(CMA_APPLICATION_NAME)
+    CMA_INCLUDE_SIM: $(CMA_INCLUDE_SIM)
+    CMA_CONFIGURE_BT: $(CMA_CONFIGURE_BT)
+    CMA_BT_ONLY: $(CMA_BT_ONLY)
+    CMA_INCLUDE_DATABASE: $(CMA_INCLUDE_DATABASE)
+    CMA_DATABASE_NAME: $(CMA_DATABASE_NAME)
+    CMA_OVERWRITE_HEALTH_RULES: $(CMA_OVERWRITE_HEALTH_RULES)
+
      
