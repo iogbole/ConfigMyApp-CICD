@@ -10,8 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
   environment:
    name: 'CMA-env'
-   resourceType: VirtualMachine
-   tags: configmyapp,demo
+   tags: configmyapp
 
 # Set variables once as shown below, use the UI 
 variables:
