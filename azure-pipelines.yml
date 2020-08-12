@@ -65,4 +65,5 @@ steps:
   displayName: 'Run ConfigMyApp'
   env:
     CMA_PASSWORD: $(CMA_PASSWORD)
+    CMA_APPLICATION_NAME: $(CMA_APPLICATION_NAME)
      
