@@ -29,7 +29,7 @@ variables:
 
 steps:
 - script: |
-    # Write your commands here ###ttt
+    # Write your commands here ffff
     
     LOCATION=$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
                 | grep "tag_name" \
