@@ -55,9 +55,9 @@ node {
 
             #Branding 
 
-            background="https://user-images.githubusercontent.com/2548160/88209855-36123d80-cc4b-11ea-8a46-8bf8bd02bbb5.jpg"
+            background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg"
             curl -o "branding/background.jpg" \$background 
-            logo="https://user-images.githubusercontent.com/2548160/88204707-9a310380-cc43-11ea-9149-561199f144af.png"
+            logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
             
             pwd
