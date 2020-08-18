@@ -2,7 +2,7 @@
     "java_pojo_rules": [
        {
         "include_or_exclude_rule": "exclude",
-        "rule_name": "getStatus_test",
+        "rule_name": "getStatus_test_vf",
         "class_name": "com.appdynamics.health.Class",
         "class_matching_condition":"STARTS_WITH",
         "method_name": "getStatus",
@@ -14,7 +14,7 @@
      "dotnet_poco_rules": [
       {
         "include_or_exclude_rule": "INCLUDE",
-        "rule_name": "GetMQTopic_test",
+        "rule_name": "GetMQTopic_test_vf",
         "class_name": "Services.IO.DequeueSync",
         "class_matching_condition":"STARTS_WITH",
         "method_name": "GetMQTopic",
@@ -23,7 +23,7 @@
        },
        {
         "include_or_exclude_rule": "EXCLUDE",
-        "rule_name": "UserLogin",
+        "rule_name": "UserLogin_vf",
         "class_name": "AppD.Ecom.AuthNTest",
         "class_matching_condition":"STARTS_WITH",
         "method_name": "Login",
@@ -35,7 +35,7 @@
      "dotnet_asp_rules": [
       {
        "include_or_exclude_rule": "Include",
-       "rule_name": "ASPLogin_test",
+       "rule_name": "ASPLogin_test_vf",
        "matching_condition":"CONTAINS",
        "matching_strings": "/login",
        "priority":"8"
@@ -44,7 +44,7 @@
 
     "java_servlet_rules": [
       {
-       "rule_name": "LogonServlet_test",
+       "rule_name": "LogonServlet_test-vf",
        "matching_condition":"MATCHES_REGEX",
        "matching_strings": "^user.*(\/login)$",
        "priority":"7"
