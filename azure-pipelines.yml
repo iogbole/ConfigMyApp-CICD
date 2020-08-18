@@ -60,7 +60,7 @@ steps:
     else
        ./start.sh  --use-branding --logo-name="logo.png" --background-name="background.png" 
     fi
-    echo "End script"
+    echo "End script##"
   displayName: 'Run ConfigMyApp'
   env:
     CMA_PASSWORD: $(CMA_PASSWORD)
