@@ -1,7 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 properties(
-  [pipelineTriggers([githubPush()])]
+ // [pipelineTriggers([githubPush()])]
   [parameters(
     [
       string(defaultValue: 'IoT_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
