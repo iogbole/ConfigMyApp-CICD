@@ -64,7 +64,7 @@ node {
             unzip ConfigMyApp.zip
             cd ConfigMyApp-* 
 
-            #Branding 
+            #Branding...
 
             background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg"
             curl -o "branding/background.jpg" \$background 
