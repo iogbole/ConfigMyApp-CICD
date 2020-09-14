@@ -19,7 +19,7 @@ properties(
 )
 
 node {
- 	// Clean workspace before doing anything.
+ 	// Clean workspace before doing anything...
     deleteDir()
   try {
 
