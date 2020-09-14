@@ -42,7 +42,7 @@ steps:
     unzip ConfigMyApp.zip
     cd ConfigMyApp-* 
 
-    #Branding #
+    #Branding
 
     #Get it from a remote location 
 
