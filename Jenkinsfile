@@ -25,9 +25,7 @@ node {
   try {
 
       stage ('Clone') { 
-        	 
-        	  checkout scm
-
+         checkout scm
         }
 
        stage('ConfigMyApp') {  
@@ -82,8 +80,7 @@ node {
           """
         
       }
-       }
-   
+      }
     }catch (err) {
         currentBuild.result = 'FAILED'
         throw err
