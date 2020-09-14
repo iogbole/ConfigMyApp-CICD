@@ -24,21 +24,13 @@ node {
     deleteDir()
   try {
 
-      stage ('Clone') {
-        	 steps {
-            checkout([
-              $class: 'GitSCM',
-              branches: [[name: 'master']],
-              userRemoteConfigs: [[
-                url: 'git@github.com:iogbole/ConfigMyApp-CICD.git'
-              ]]
-             ])
-   }
+      stage ('Clone') { 
+        	 
+        	  checkout scm
 
         }
 
        stage('ConfigMyApp') {  
-        
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
             sh """
             echo "ConfigMyApp...starttttt"  
@@ -91,10 +83,15 @@ node {
         
       }
        }
-      }catch (err) {
+      }catch(RejectedAccessException e) {
+    throw e
+} 
+      
+      catch (err) {
         currentBuild.result = 'FAILED'
         throw err
     }
+    
  } 
 
  
