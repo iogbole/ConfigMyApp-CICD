@@ -62,8 +62,6 @@ node {
             
             pwd
 
-            ls ${workspace}@script/
-
             ls ${workspace}
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
