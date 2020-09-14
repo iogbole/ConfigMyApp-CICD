@@ -1,6 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
 properties(
+  [pipelineTriggers([githubPush()])]
   [parameters(
     [
       string(defaultValue: 'IoT_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
@@ -24,7 +25,17 @@ node {
   try {
 
       stage ('Clone') {
-        	checkout scm
+        	 steps {
+            checkout([
+              $class: 'GitSCM',
+              branches: [[name: 'master']],
+              userRemoteConfigs: [[
+                url: 'git@github.com:iogbole/ConfigMyApp-CICD.git',
+                credentialsId: '',
+              ]]
+             ])
+   }
+
         }
 
        stage('ConfigMyApp') {  
