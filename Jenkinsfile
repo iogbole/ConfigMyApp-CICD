@@ -30,8 +30,7 @@ node {
               $class: 'GitSCM',
               branches: [[name: 'master']],
               userRemoteConfigs: [[
-                url: 'git@github.com:iogbole/ConfigMyApp-CICD.git',
-                credentialsId: '',
+                url: 'git@github.com:iogbole/ConfigMyApp-CICD.git'
               ]]
              ])
    }
