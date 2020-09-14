@@ -83,8 +83,7 @@ node {
         
       }
        }
-      }catch(RejectedAccessException e) {
-    throw e
+   
     }catch (err) {
         currentBuild.result = 'FAILED'
         throw err
