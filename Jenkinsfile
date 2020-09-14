@@ -27,6 +27,7 @@ node {
       stage ('Clone') { 
         	 
         	  checkout scm
+
         }
 
        stage('ConfigMyApp') {  
