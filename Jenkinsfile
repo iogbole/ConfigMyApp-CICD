@@ -4,7 +4,7 @@ properties(
  // [pipelineTriggers([githubPush()])]
   [parameters(
     [
-      string(defaultValue: 'IoT_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
+      string(defaultValue: 'Jenkins_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
       choice(choices: ['configmyappdemo-2044no-uzyczrm0.appd-cx.com', 'dev-configmyappdemo-2044no-uzyczrm0.appd-cx.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
       choice(choices: ['customer1', 'dev-customer1'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
       string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
