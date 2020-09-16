@@ -37,6 +37,7 @@ steps:
                 ; curl -L -o ConfigMyApp.zip $LOCATION
         
     pwd
+    
     ls -ltr
     # apt-get install unzip -y
     unzip ConfigMyApp.zip
