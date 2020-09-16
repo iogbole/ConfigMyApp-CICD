@@ -12,7 +12,7 @@ pool:
    name: 'CMA'
    tags: configmyapp
 
-# Set variables once as shown below, use the UI 
+# Set variables once as shown below, use the UI ee
 variables:
   #CMA_APPLICATION_NAME: IoT_API
   CMA_CONTROLLER_HOST: configmyappdemo-2044no-uzyczrm0.appd-cx.com
