@@ -63,9 +63,9 @@ steps:
 
     if [ "$CMA_BT_ONLY" = true ] || [ "$CMA_CONFIGURE_BT" = true ]; then
        cp ../bt_config/$CMA_APPLICATION_NAME-configBT.json bt_config/configBT.json
-       ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME"  --logo-name="logo.png" --background-name="background.png" 
+       ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME"  --logo-name="logo.png" --background-name="background.jpg" 
     else
-       ./start.sh  --logo-name="logo.png" --background-name="background.png" 
+       ./start.sh  --logo-name="logo.png" --background-name="background.jpg" 
     fi
     echo "End script##"
   displayName: 'Run ConfigMyApp'
