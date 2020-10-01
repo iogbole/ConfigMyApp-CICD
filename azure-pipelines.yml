@@ -26,6 +26,7 @@ variables:
   #CMA_INCLUDE_DATABASE : false
   #CMA_OVERWRITE_HEALTH_RULES: true
   #CMA_DATABASE_NAME: ConfigMyApp
+  CMA_USE_BRANDING: false
 
 steps:
 - script: |
@@ -62,9 +63,9 @@ steps:
 
     if [ "$CMA_BT_ONLY" = true ] || [ "$CMA_CONFIGURE_BT" = true ]; then
        cp ../bt_config/$CMA_APPLICATION_NAME-configBT.json bt_config/configBT.json
-       ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME" --use-branding --logo-name="logo.png" --background-name="background.png" 
+       ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME"  --logo-name="logo.png" --background-name="background.png" 
     else
-       ./start.sh  --use-branding --logo-name="logo.png" --background-name="background.png" 
+       ./start.sh  --logo-name="logo.png" --background-name="background.png" 
     fi
     echo "End script##"
   displayName: 'Run ConfigMyApp'
@@ -77,5 +78,6 @@ steps:
     CMA_INCLUDE_DATABASE: $(CMA_INCLUDE_DATABASE)
     CMA_DATABASE_NAME: $(CMA_DATABASE_NAME)
     CMA_OVERWRITE_HEALTH_RULES: $(CMA_OVERWRITE_HEALTH_RULES)
+    CMA_USE_BRANDING: $(CMA_USE_BRANDING)
 
      
