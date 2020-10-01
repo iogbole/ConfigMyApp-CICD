@@ -26,7 +26,7 @@ variables:
   #CMA_INCLUDE_DATABASE : false
   #CMA_OVERWRITE_HEALTH_RULES: true
   #CMA_DATABASE_NAME: ConfigMyApp
-  CMA_USE_BRANDING: false
+  CMA_USE_BRANDING: true
 
 steps:
 - script: |
