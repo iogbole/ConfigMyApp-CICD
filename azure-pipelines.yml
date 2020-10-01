@@ -55,8 +55,8 @@ steps:
 
     #OR copy the files from git
 
-    cp  ../branding/background.png branding/background.png
-    cp  ../branding/logo.png branding/logo.png
+    #cp  ../branding/background.png branding/background.png
+    #cp  ../branding/logo.png branding/logo.png
 
      echo CMA_BT_ONLY = $CMA_BT_ONLY
      echo CMA_CONFIGURE_BT = $CMA_CONFIGURE_BT
