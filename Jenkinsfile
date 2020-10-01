@@ -50,7 +50,7 @@ node {
 
             ls -ltr
 
-            # apt-get install unzip -y
+            # apt-get install unzip -y drgrdtrtr
             unzip ConfigMyApp.zip
             cd ConfigMyApp-* 
 
