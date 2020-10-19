@@ -47,6 +47,7 @@ node {
             | grep "tag_name" \
             | awk '{print "https://github.com/Appdynamics/ConfigMyApp/archive/" substr(\$2, 2, length(\$2)-3) ".zip"}') \
             ; curl -L -o ConfigMyApp.zip \$LOCATION
+          
 
             ls -ltr
 
@@ -55,13 +56,19 @@ node {
             cd ConfigMyApp-* 
 
             #Branding...
-            background="https://user-images.githubusercontent.com/2548160/94803698-99ee7a80-03e1-11eb-9bff-5ed9b89eefec.jpg"
-            #background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg"
+            background="https://user-images.githubusercontent.com/2548160/88209855-36123d80-cc4b-11ea-8a46-8bf8bd02bbb5.jpg" #tpicap
+
+            #background="https://user-images.githubusercontent.com/2548160/94803698-99ee7a80-03e1-11eb-9bff-5ed9b89eefec.jpg" #nsb
+            #background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg" #vf
+         
             curl -o "branding/background.jpg" \$background 
-            logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
+
+
+            logo="https://user-images.githubusercontent.com/2548160/88204707-9a310380-cc43-11ea-9149-561199f144af.png" #tpicap
+            #logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png" #nbs
+
             curl -o "branding/logo.png" \$logo 
             
-
             #Health rules...
             if [ "$(ls -A ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
               echo ""
@@ -74,7 +81,7 @@ node {
          
             pwd
 
-            ls ${workspace}
+            
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
