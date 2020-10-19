@@ -70,19 +70,17 @@ node {
             curl -o "branding/logo.png" \$logo 
             
             #Health rules...
-            if [ "$(ls -A ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
+            if [ "$(ls -A \${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
               echo ""
               echo "overriding health rule configurations" 
-              cp -vrf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
+              cp -vrf \${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*  healthrules/
             else 
-              echo ""
-              No custom health rules were found for ${params.CMA_APPLICATION_NAME}
+              echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
+            
             fi
          
             pwd
-
-            
-
+s
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
