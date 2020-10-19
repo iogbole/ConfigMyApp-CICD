@@ -30,7 +30,7 @@ node {
 
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
-            sh """
+            \sh """
             
             echo "ConfigMyApp..start"  
             export CMA_APPLICATION_NAME=\${params.CMA_APPLICATION_NAME}
@@ -83,8 +83,6 @@ node {
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
-
-            #ls -ltr
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
