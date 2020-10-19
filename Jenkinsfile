@@ -66,7 +66,7 @@ node {
             echo "overriding health rule configurations" 
             #cp -rfv ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
 
-            if [ "$(ls -A ${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
+            if [ "$(ls -A ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
               echo ""
               echo "overriding health rule configurations" 
               cp -rf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
