@@ -64,7 +64,7 @@ node {
 
             #Health rules...
             echo "overriding health rule configurations" 
-            cp ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/* ${workspace}/healthrules/
+            cp ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
 
             pwd
 
