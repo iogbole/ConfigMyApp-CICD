@@ -70,14 +70,13 @@ node {
             curl -o "branding/logo.png" \$logo 
             
             #Health rules...
-            if [ "$(ls -A ${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
+            #if [ "$(ls -A ${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
               echo ""
               echo "overriding health rule configurations" 
               cp -rf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
-            else 
-              echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
-              
-            fi
+            #else 
+            #  echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
+            #fi
          
             pwd
 
