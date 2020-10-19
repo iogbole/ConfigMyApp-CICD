@@ -61,19 +61,15 @@ node {
             logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
             
-
             # Health rules..
-            appName="\${params.CMA_APPLICATION_NAME}"
-
-            hr="$(ls -A ${workspace}/health_rules/$appName/*/*.json)"
+            hr="$(ls -A ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*/*.json)"
             echo $hr
-
             if [ $hr ]; then
               echo ""
               echo "overriding health rule configurations" 
-              cp -rf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
+              cp -rf ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*  healthrules/
             else 
-              echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
+              echo "No custom health rules were found for ${CMA_APPLICATION_NAME}"
             fi
 
 
