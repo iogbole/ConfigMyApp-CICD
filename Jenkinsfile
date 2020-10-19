@@ -62,11 +62,8 @@ node {
             curl -o "branding/logo.png" \$logo 
             
 
-            #Health rules...
-            echo "overriding health rule configurations" 
-            #cp -rfv ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
-
-            appName=\${params.CMA_APPLICATION_NAME}
+            # Health rules..
+            appName="\${params.CMA_APPLICATION_NAME}"
 
             hr="$(ls -A ${workspace}/health_rules/$appName/*/*.json)"
             echo $hr
