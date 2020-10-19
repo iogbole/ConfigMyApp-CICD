@@ -64,9 +64,16 @@ node {
 
             #Health rules...
             echo "overriding health rule configurations" 
-            cp -rfv ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
+            #cp -rfv ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
 
-            pwd
+            if [ "$(ls -A ${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
+              echo ""
+              echo "overriding health rule configurations" 
+              cp -rf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
+            else 
+              echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
+            fi
+
 
             ls ${workspace}
 
