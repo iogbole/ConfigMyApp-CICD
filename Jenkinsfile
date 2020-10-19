@@ -73,9 +73,7 @@ node {
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
-
-            #ls -ltr
-
+            
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
               ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
