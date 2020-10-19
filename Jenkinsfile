@@ -68,7 +68,7 @@ node {
 
             appName="$params.CMA_APPLICATION_NAME}"
 
-            hr=$(ls -A ${workspace}/health_rules/$appName/*/*.json)
+            hr="$(ls -A ${workspace}/health_rules/$appName/*/*.json)"
             echo $hr
 
             if [ $hr ]; then
