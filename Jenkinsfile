@@ -30,24 +30,23 @@ node {
 
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
-            sh '''
+            sh """
             
             echo "ConfigMyApp..start"  
-            export CMA_APPLICATION_NAME=\${params.CMA_APPLICATION_NAME}
-            export CMA_CONTROLLER_HOST=\${params.CMA_CONTROLLER_HOST}
-            export CMA_USE_HTTPS=\${params.CMA_USE_HTTPS}
-            export CMA_CONTROLLER_PORT=\${params.CMA_CONTROLLER_PORT}
-            export CMA_BT_ONLY=\${params.CMA_BT_ONLY}
-            export CMA_ACCOUNT=\${params.CMA_ACCOUNT}
-            export CMA_INCLUDE_SIM=\${params.CMA_INCLUDE_SIM}
-            export CMA_CONFIGURE_BT=\${params.CMA_CONFIGURE_BT}
-            export CMA_INCLUDE_DATABASE=\${params.CMA_INCLUDE_DATABASE}
+            export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
+            export CMA_CONTROLLER_HOST=${params.CMA_CONTROLLER_HOST}
+            export CMA_USE_HTTPS=${params.CMA_USE_HTTPS}
+            export CMA_CONTROLLER_PORT=${params.CMA_CONTROLLER_PORT}
+            export CMA_BT_ONLY=${params.CMA_BT_ONLY}
+            export CMA_ACCOUNT=${params.CMA_ACCOUNT}
+            export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
+            export CMA_CONFIGURE_BT=${params.CMA_CONFIGURE_BT}
+            export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
             | awk '{print "https://github.com/Appdynamics/ConfigMyApp/archive/" substr(\$2, 2, length(\$2)-3) ".zip"}') \
             ; curl -L -o ConfigMyApp.zip \$LOCATION
-          
 
             ls -ltr
 
@@ -56,33 +55,26 @@ node {
             cd ConfigMyApp-* 
 
             #Branding...
-            background="https://user-images.githubusercontent.com/2548160/88209855-36123d80-cc4b-11ea-8a46-8bf8bd02bbb5.jpg" #tpicap
-
-            #background="https://user-images.githubusercontent.com/2548160/94803698-99ee7a80-03e1-11eb-9bff-5ed9b89eefec.jpg" #nsb
-            #background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg" #vf
-         
+            background="https://user-images.githubusercontent.com/2548160/94803698-99ee7a80-03e1-11eb-9bff-5ed9b89eefec.jpg"
+            #background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg"
             curl -o "branding/background.jpg" \$background 
-
-
-            logo="https://user-images.githubusercontent.com/2548160/88204707-9a310380-cc43-11ea-9149-561199f144af.png" #tpicap
-            #logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png" #nbs
-
+            logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
             
+
             #Health rules...
-            #if [ "$(ls -A ${workspace}/health_rules/\${params.CMA_APPLICATION_NAME}/*/*.json)" ]; then
-              echo ""
-              echo "overriding health rule configurations" 
-              cp -rf ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
-            #else 
-            #  echo "No custom health rules were found for ${params.CMA_APPLICATION_NAME}"
-            #fi
-         
+            echo "overriding health rule configurations" 
+            cp ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/*  healthrules/
+
             pwd
+
+            ls ${workspace}
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
+
+            #ls -ltr
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
@@ -91,7 +83,7 @@ node {
               ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
             fi
             echo "End script"
-        '''  
+          """
         
       }
       }
@@ -103,4 +95,3 @@ node {
  } 
 
  
-
