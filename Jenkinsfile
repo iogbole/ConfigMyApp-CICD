@@ -30,7 +30,7 @@ node {
 
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
-            \sh """
+            sh '''
             
             echo "ConfigMyApp..start"  
             export CMA_APPLICATION_NAME=\${params.CMA_APPLICATION_NAME}
@@ -91,7 +91,7 @@ node {
               ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
             fi
             echo "End script"
-          """
+        '''  
         
       }
       }
