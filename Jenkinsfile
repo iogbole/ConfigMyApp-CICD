@@ -61,6 +61,11 @@ node {
             logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
             
+
+            #Health rules...
+            echo "overriding health rule configurations" 
+            cp ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/* ${workspace}/healthrules/
+
             pwd
 
             ls ${workspace}
