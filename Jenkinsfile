@@ -31,7 +31,6 @@ node {
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
             sh """
-            
             echo "ConfigMyApp..start"  
             export CMA_APPLICATION_NAME=\${params.CMA_APPLICATION_NAME}
             export CMA_CONTROLLER_HOST=\${params.CMA_CONTROLLER_HOST}
@@ -80,7 +79,7 @@ node {
             fi
          
             pwd
-s
+
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
