@@ -33,15 +33,15 @@ node {
             sh """
             
             echo "ConfigMyApp..start"  
-            export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
-            export CMA_CONTROLLER_HOST=${params.CMA_CONTROLLER_HOST}
-            export CMA_USE_HTTPS=${params.CMA_USE_HTTPS}
-            export CMA_CONTROLLER_PORT=${params.CMA_CONTROLLER_PORT}
-            export CMA_BT_ONLY=${params.CMA_BT_ONLY}
-            export CMA_ACCOUNT=${params.CMA_ACCOUNT}
-            export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
-            export CMA_CONFIGURE_BT=${params.CMA_CONFIGURE_BT}
-            export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
+            export CMA_APPLICATION_NAME="${params.CMA_APPLICATION_NAME}"
+            export CMA_CONTROLLER_HOST="${params.CMA_CONTROLLER_HOST}"
+            export CMA_USE_HTTPS="${params.CMA_USE_HTTPS}"
+            export CMA_CONTROLLER_PORT="${params.CMA_CONTROLLER_PORT}"
+            export CMA_BT_ONLY="${params.CMA_BT_ONLY}"
+            export CMA_ACCOUNT="${params.CMA_ACCOUNT}
+            export CMA_INCLUDE_SIM="${params.CMA_INCLUDE_SIM}"
+            export CMA_CONFIGURE_BT="${params.CMA_CONFIGURE_BT}"
+            export CMA_INCLUDE_DATABASE="${params.CMA_INCLUDE_DATABASE}"
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
@@ -62,14 +62,14 @@ node {
             curl -o "branding/logo.png" \$logo 
             
             # Health rules..
-            hr="$(ls -A ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*/*.json)"
-            echo $hr
-            if [ $hr ]; then
+            hr="\$(ls -A ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*/*.json)"
+            echo "\$hr"
+            if [ "\$hr" ]; then
               echo ""
               echo "overriding health rule configurations" 
               cp -rf ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*  healthrules/
             else 
-              echo "No custom health rules were found for ${CMA_APPLICATION_NAME}"
+              echo "No custom health rules were found for \${CMA_APPLICATION_NAME}"
             fi
 
 
