@@ -5,18 +5,16 @@ properties(
   [parameters(
     [
       string(defaultValue: 'Jenkins_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
-      choice(choices: ['configmyappdemo-20103n-m3lp0zmi.appd-cx.com', 'fieldlabs.saas.appdynamics.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
-      choice(choices: ['customer1', 'fieldlabs'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
+      choice(choices: ['configmyappdemo-2044no-uzyczrm0.appd-cx.com', 'dev-configmyappdemo-2044no-uzyczrm0.appd-cx.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
+      choice(choices: ['customer1', 'dev-customer1'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
       string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
       booleanParam(defaultValue: 'false', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
       booleanParam(defaultValue: false, description: 'Include Server visibility', name: 'CMA_INCLUDE_SIM'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
-      booleanParam(defaultValue: false, description: 'Configure ONLY Health Rules', name: 'CMA_HEALTH_RULES_ONLY'),
-      booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES'),
       booleanParam(defaultValue: false, description: 'Add Business Transactions', name: 'CMA_CONFIGURE_BT'),
       booleanParam(defaultValue: false, description: 'Include Database', name: 'CMA_INCLUDE_DATABASE'),
-      string(defaultValue: 'app-db', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false)
-      
+      string(defaultValue: 'app-db', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
+      booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES')
     ])
   ]
 )
@@ -35,17 +33,15 @@ node {
             sh """
             
             echo "ConfigMyApp..start"  
-            export CMA_APPLICATION_NAME=\${params.CMA_APPLICATION_NAME}
-            export CMA_CONTROLLER_HOST=\${params.CMA_CONTROLLER_HOST}
-            export CMA_USE_HTTPS=\${params.CMA_USE_HTTPS}
-            export CMA_CONTROLLER_PORT=\${params.CMA_CONTROLLER_PORT}
-            export CMA_BT_ONLY=\${params.CMA_BT_ONLY}
-            export CMA_ACCOUNT=\${params.CMA_ACCOUNT}
-            export CMA_INCLUDE_SIM=\${params.CMA_INCLUDE_SIM}
-            export CMA_CONFIGURE_BT=\${params.CMA_CONFIGURE_BT}
-            export CMA_INCLUDE_DATABASE=\${params.CMA_INCLUDE_DATABASE}
-            export CMA_HEALTH_RULES_ONLY=\${params.CMA_HEALTH_RULES_ONLY}
-            export CMA_OVERWRITE_HEALTH_RULES=\${params.CMA_OVERWRITE_HEALTH_RULES}
+            export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
+            export CMA_CONTROLLER_HOST=${params.CMA_CONTROLLER_HOST}
+            export CMA_USE_HTTPS=${params.CMA_USE_HTTPS}
+            export CMA_CONTROLLER_PORT=${params.CMA_CONTROLLER_PORT}
+            export CMA_BT_ONLY=${params.CMA_BT_ONLY}
+            export CMA_ACCOUNT=${params.CMA_ACCOUNT}
+            export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
+            export CMA_CONFIGURE_BT=${params.CMA_CONFIGURE_BT}
+            export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
@@ -65,23 +61,15 @@ node {
             logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
             
-            # Health rules..
-            hr="$(ls -A ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*/*.json)"
-            echo $hr
-            if [ $hr ]; then
-              echo ""
-              echo "overriding health rule configurations" 
-              cp -rf ${workspace}/health_rules/${CMA_APPLICATION_NAME}/*  healthrules/
-            else 
-              echo "No custom health rules were found for ${CMA_APPLICATION_NAME}"
-            fi
-
+            pwd
 
             ls ${workspace}
 
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
+
+            #ls -ltr
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
@@ -90,7 +78,7 @@ node {
               ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
             fi
             echo "End script"
-         """
+          """
         
       }
       }
@@ -102,3 +90,4 @@ node {
  } 
 
  
+
