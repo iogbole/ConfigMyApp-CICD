@@ -64,7 +64,7 @@ node {
             curl -o "branding/background.jpg" \$background 
             logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
             curl -o "branding/logo.png" \$logo 
-            
+      
             pwd
 
             ls ${workspace}
@@ -72,8 +72,6 @@ node {
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
-
-            #ls -ltr
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
