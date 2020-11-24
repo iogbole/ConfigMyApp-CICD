@@ -44,6 +44,7 @@ node {
             export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
             export CMA_CONFIGURE_BT=${params.CMA_CONFIGURE_BT}
             export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
+            export CMA_HEALTH_RULES_ONLY=${params.CMA_HEALTH_RULES_ONLY}
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
@@ -77,7 +78,7 @@ node {
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
               ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
             else
-              ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg" --debug
+              ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
             fi
             echo "End script"
           """
