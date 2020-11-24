@@ -5,16 +5,18 @@ properties(
   [parameters(
     [
       string(defaultValue: 'Jenkins_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
-      choice(choices: ['configmyappdemo-2044no-uzyczrm0.appd-cx.com', 'dev-configmyappdemo-2044no-uzyczrm0.appd-cx.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
-      choice(choices: ['customer1', 'dev-customer1'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
+      choice(choices: ['configmyappdemo-20103n-m3lp0zmi.appd-cx.com', 'fieldlabs.saas.appdynamics.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
+      choice(choices: ['customer1', 'fieldlabs'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
       string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
       booleanParam(defaultValue: 'false', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
       booleanParam(defaultValue: false, description: 'Include Server visibility', name: 'CMA_INCLUDE_SIM'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
+      booleanParam(defaultValue: false, description: 'Configure ONLY Health Rules', name: 'CMA_HEALTH_RULES_ONLY'),
+      booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES'),
       booleanParam(defaultValue: false, description: 'Add Business Transactions', name: 'CMA_CONFIGURE_BT'),
       booleanParam(defaultValue: false, description: 'Include Database', name: 'CMA_INCLUDE_DATABASE'),
-      string(defaultValue: 'app-db', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
-      booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES')
+      string(defaultValue: 'app-db', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false)
+      
     ])
   ]
 )
@@ -42,6 +44,8 @@ node {
             export CMA_INCLUDE_SIM=${params.CMA_INCLUDE_SIM}
             export CMA_CONFIGURE_BT=${params.CMA_CONFIGURE_BT}
             export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
+            export CMA_HEALTH_RULES_ONLY=${params.CMA_HEALTH_RULES_ONLY}
+            export CMA_OVERWRITE_HEALTH_RULES=${params.CMA_OVERWRITE_HEALTH_RULES}
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
