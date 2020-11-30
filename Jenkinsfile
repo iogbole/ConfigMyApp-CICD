@@ -20,11 +20,12 @@ properties(
     ])
   ]
 )
+
 node {
  	// Clean workspace before doing anything...
     deleteDir()
   try {
-    
+
       stage ('Clone') { 
          checkout scm
         }
