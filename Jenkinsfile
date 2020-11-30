@@ -30,7 +30,7 @@ node {
          checkout scm
         }
        stage('ConfigMyApp') {  
-           withCredentials([usernamePassword(credentialsId: '57aa7121-685a-46c0-949c-4a1d4991ea2f', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
+           withCredentials([usernamePassword(credentialsId: 'i_demo', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
             sh """
             
             echo "ConfigMyApp..start"  
