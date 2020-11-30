@@ -38,14 +38,13 @@ steps:
                 ; curl -L -o ConfigMyApp.zip $LOCATION
         
     pwd
-    
+
     ls -ltr
     # apt-get install unzip -y
     unzip ConfigMyApp.zip
     cd ConfigMyApp-* 
 
     #Branding
-
     #Get it from a remote location 
 
     #background="https://user-images.githubusercontent.com/2548160/88209855-36123d80-cc4b-11ea-8a46-8bf8bd02bbb5.jpg"
