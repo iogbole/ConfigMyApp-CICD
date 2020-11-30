@@ -36,7 +36,7 @@
       {
        "include_or_exclude_rule": "Include",
        "rule_name": "ASPLogin_test",
-       "matching_condition":"CONTAINS",
+       "matching_condition": "CONTAINS",
        "matching_strings": "/login",
        "priority": "8"
       }
