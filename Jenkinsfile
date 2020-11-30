@@ -80,6 +80,7 @@ node {
             fi
             echo "End script"
           """
+          
       }
       }
     }catch (err) {
