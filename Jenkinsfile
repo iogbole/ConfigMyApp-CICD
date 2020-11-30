@@ -62,7 +62,7 @@ node {
             background="https://user-images.githubusercontent.com/2548160/94803698-99ee7a80-03e1-11eb-9bff-5ed9b89eefec.jpg"
             #background="https://user-images.githubusercontent.com/2548160/90539325-97103100-e177-11ea-975a-6ae777ae03e3.jpg"
             curl -o "branding/background.jpg" \$background 
-            logo="https://user-images.githubusercontent.com/2548160/90539333-98d9f480-e177-11ea-99b9-8b72a2fe525a.png"
+            logo="https://user-images.githubusercontent.com/2548160/79470803-bf392900-7ff9-11ea-9298-ec58cf45786a.png"
             curl -o "branding/logo.png" \$logo 
       
             pwd
@@ -75,9 +75,9 @@ node {
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
-              ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             else
-              ./start.sh  --overwrite-health-rules --use-branding --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh  --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             fi
             echo "End script"
           """
