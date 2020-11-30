@@ -4,16 +4,16 @@ properties(
  // [pipelineTriggers([githubPush()])]
   [parameters(
     [
-      string(defaultValue: 'Jenkins_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
-      choice(choices: ['configmyappdemo-20103n-m3lp0zmi.appd-cx.com', 'fieldlabs.saas.appdynamics.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
-      choice(choices: ['customer1', 'fieldlabs'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
-      string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
-      booleanParam(defaultValue: 'false', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
+      string(defaultValue: 'creditdeal-qa', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
+      choice(choices: ['tpicap-dev.saas.appdynamics.com', 'tpicap.saas.appdynamics.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
+      choice(choices: ['tpicap-dev', 'tpicap'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
+      string(defaultValue: '443', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
+      booleanParam(defaultValue: 'true', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
       booleanParam(defaultValue: false, description: 'Include Server visibility', name: 'CMA_INCLUDE_SIM'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
       booleanParam(defaultValue: false, description: 'Add Business Transactions', name: 'CMA_CONFIGURE_BT'),
       booleanParam(defaultValue: false, description: 'Include Database', name: 'CMA_INCLUDE_DATABASE'),
-      string(defaultValue: 'ConfigMyApp', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
+      string(defaultValue: 'CreditDeal QA - LDNQCDSSQL01', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
       booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Health Rules', name: 'CMA_HEALTH_RULES_ONLY')
 
@@ -30,7 +30,7 @@ node {
          checkout scm
         }
        stage('ConfigMyApp') {  
-           withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
+           withCredentials([usernamePassword(credentialsId: '57aa7121-685a-46c0-949c-4a1d4991ea2f', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
             sh """
             
             echo "ConfigMyApp..start"  
