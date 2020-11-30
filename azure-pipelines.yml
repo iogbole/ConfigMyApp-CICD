@@ -27,7 +27,6 @@ variables:
   #CMA_OVERWRITE_HEALTH_RULES: true
   #CMA_DATABASE_NAME: ConfigMyApp
   CMA_USE_BRANDING: true
-
 steps:
 - script: |
     # Write your commands here
