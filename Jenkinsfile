@@ -29,7 +29,6 @@ node {
       stage ('Clone') { 
          checkout scm
         }
-
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
             sh """
