@@ -1,0 +1,66 @@
+{
+    "name": "[tpEMSDB Disk]",
+    "enabled": true,
+    "useDataFromLastNMinutes": 3,
+    "waitTimeAfterViolation": 30,
+    "scheduleName": "Always",
+    "affects": {
+        "affectedEntityType": "SERVERS_IN_APPLICATION",
+        "affectedServers": {
+            "serversScope": "ALL_SERVERS_IN_SPECIFIC_TIERS",
+            "specificTiers": [
+                "tpEMSDB"
+            ]
+        }
+    },
+    "evalCriterias": {
+        "criticalCriteria": {
+            "conditionAggregationType": "ALL",
+            "conditionExpression": null,
+            "conditions": [
+                {
+                    "name": "Disk '/' usage should be below 90%",
+                    "shortName": "A",
+                    "evaluateToTrueOnNoData": false,
+                    "evalDetail": {
+                        "evalDetailType": "SINGLE_METRIC",
+                        "metricAggregateFunction": "VALUE",
+                        "metricPath": "Hardware Resources|Volumes|/|Used (%)",
+                        "metricEvalDetail": {
+                            "metricEvalDetailType": "SPECIFIC_TYPE",
+                            "compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+                            "compareValue": 90
+                        }
+                    },
+                    "triggerEnabled": true,
+                    "minimumTriggers": 2
+                }
+            ],
+            "evalMatchingCriteria": null
+        },
+        "warningCriteria": {
+            "conditionAggregationType": "ALL",
+            "conditionExpression": null,
+            "conditions": [
+                {
+                    "name": "Disk '/' usage should be below 75%",
+                    "shortName": "A",
+                    "evaluateToTrueOnNoData": false,
+                    "evalDetail": {
+                        "evalDetailType": "SINGLE_METRIC",
+                        "metricAggregateFunction": "VALUE",
+                        "metricPath": "Hardware Resources|Volumes|/|Used (%)",
+                        "metricEvalDetail": {
+                            "metricEvalDetailType": "SPECIFIC_TYPE",
+                            "compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+                            "compareValue": 75
+                        }
+                    },
+                    "triggerEnabled": true,
+                    "minimumTriggers": 2
+                }
+            ],
+            "evalMatchingCriteria": null
+        }
+    }
+}

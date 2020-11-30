@@ -1,0 +1,75 @@
+{
+    "name": "[AppServer Network TCP Loss]",
+    "enabled": true,
+    "useDataFromLastNMinutes": 20,
+    "waitTimeAfterViolation": 30,
+    "scheduleName": "Always",
+    "affects": {
+        "affectedEntityType": "ADVANCED_NETWORK",
+        "affectedEntities": {
+            "tierOrNode": "TIER_AFFECTED_ENTITIES",
+            "affectedTiers": {
+                "affectedTierScope": "SPECIFIC_TIERS",
+                "tiers": [
+                    "AppServer"
+                ]
+            }
+        }
+    },
+    "evalCriterias": {
+        "criticalCriteria": {
+            "conditionAggregationType": "ALL",
+            "conditionExpression": null,
+            "conditions": [
+                {
+                    "name": "TCP Loss",
+                    "shortName": "A",
+                    "evaluateToTrueOnNoData": false,
+                    "evalDetail": {
+                        "evalDetailType": "SINGLE_METRIC",
+                        "metricAggregateFunction": "VALUE",
+                        "metricPath": "Advanced Network|Flows|Loss (per mille)",
+                        "metricEvalDetail": {
+                            "metricEvalDetailType": "SPECIFIC_TYPE",
+                            "compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+                            "compareValue": 5
+                        }
+                    },
+                    "triggerEnabled": false,
+                    "minimumTriggers": 10
+                }
+            ],
+            "evalMatchingCriteria": {
+                "matchType": "ANY_NODE",
+                "value": null
+            }
+        },
+        "warningCriteria": {
+            "conditionAggregationType": "ALL",
+            "conditionExpression": null,
+            "conditions": [
+                {
+                    "name": "TCP Loss",
+                    "shortName": "A",
+                    "evaluateToTrueOnNoData": false,
+                    "evalDetail": {
+                        "evalDetailType": "SINGLE_METRIC",
+                        "metricAggregateFunction": "VALUE",
+                        "metricPath": "Advanced Network|Flows|Loss (per mille)",
+                        "metricEvalDetail": {
+                            "metricEvalDetailType": "SPECIFIC_TYPE",
+                            "compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+                            "compareValue": 3
+                        }
+                    },
+                    "triggerEnabled": false,
+                    "minimumTriggers": 10
+                }
+            ],
+            "evalMatchingCriteria": {
+                "matchType": "ANY_NODE",
+                "value": null
+            }
+        }
+    }
+}

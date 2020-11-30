@@ -1,0 +1,59 @@
+{
+	"name": "[Infrastructure Memory]",
+	"enabled": true,
+	"useDataFromLastNMinutes": 30,
+	"waitTimeAfterViolation": 30,
+	"scheduleName": "Always",
+	"affects": {
+		"affectedEntityType": "SERVERS_IN_APPLICATION",
+		"affectedServers": {
+			"serversScope": "ALL_SERVERS_IN_APPLICATION"
+		}
+	},
+	"evalCriterias": {
+		"criticalCriteria": {
+			"conditionAggregationType": "ALL",
+			"conditionExpression": null,
+			"conditions": [{
+				"name": "Memory Used",
+				"shortName": "A",
+				"evaluateToTrueOnNoData": false,
+				"evalDetail": {
+					"evalDetailType": "SINGLE_METRIC",
+					"metricAggregateFunction": "VALUE",
+					"metricPath": "Hardware Resources|Memory|Used %",
+					"metricEvalDetail": {
+						"metricEvalDetailType": "SPECIFIC_TYPE",
+						"compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+						"compareValue": 90
+					}
+				},
+				"triggerEnabled": false,
+				"minimumTriggers": 15
+			}],
+			"evalMatchingCriteria": null
+		},
+		"warningCriteria": {
+			"conditionAggregationType": "ALL",
+			"conditionExpression": null,
+			"conditions": [{
+				"name": "Memory Used",
+				"shortName": "A",
+				"evaluateToTrueOnNoData": false,
+				"evalDetail": {
+					"evalDetailType": "SINGLE_METRIC",
+					"metricAggregateFunction": "VALUE",
+					"metricPath": "Hardware Resources|Memory|Used %",
+					"metricEvalDetail": {
+						"metricEvalDetailType": "SPECIFIC_TYPE",
+						"compareCondition": "GREATER_THAN_SPECIFIC_VALUE",
+						"compareValue": 80
+					}
+				},
+				"triggerEnabled": false,
+				"minimumTriggers": 15
+			}],
+			"evalMatchingCriteria": null
+		}
+	}
+}

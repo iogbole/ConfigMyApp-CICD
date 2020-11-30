@@ -1,0 +1,72 @@
+{
+	"name": "[Network Request Response]",
+	"enabled": true,
+	"useDataFromLastNMinutes": 30,
+	"waitTimeAfterViolation": 30,
+	"scheduleName": "Always",
+	"affects": {
+		"affectedEntityType": "ADVANCED_NETWORK",
+		"affectedEntities": {
+			"tierOrNode": "TIER_AFFECTED_ENTITIES",
+			"affectedTiers": {
+				"affectedTierScope": "ALL_TIERS"
+			}
+		}
+	},
+	"evalCriterias": {
+		"criticalCriteria": {
+			"conditionAggregationType": "ALL",
+			"conditionExpression": null,
+			"conditions": [{
+				"name": "Request Response Time Avg",
+				"shortName": "A",
+				"evaluateToTrueOnNoData": false,
+				"evalDetail": {
+					"evalDetailType": "SINGLE_METRIC",
+					"metricAggregateFunction": "VALUE",
+					"metricPath": "Application Infrastructure Performance|AppServer|Custom Metrics|Performance Monitor|*|Network|RequestResponseTimeAverage|All",
+					"metricEvalDetail": {
+						"metricEvalDetailType": "BASELINE_TYPE",
+						"baselineCondition": "GREATER_THAN_BASELINE",
+						"baselineName": "Default Baseline",
+						"compareValue": 5,
+						"baselineUnit": "STANDARD_DEVIATIONS"
+					}
+				},
+				"triggerEnabled": false,
+				"minimumTriggers": 15
+			}],
+			"evalMatchingCriteria": {
+				"matchType": "ANY_NODE",
+				"value": null
+			}
+		},
+		"warningCriteria": {
+			"conditionAggregationType": "ALL",
+			"conditionExpression": null,
+			"conditions": [{
+				"name": "Request Response Time Avg",
+				"shortName": "A",
+				"evaluateToTrueOnNoData": false,
+				"evalDetail": {
+					"evalDetailType": "SINGLE_METRIC",
+					"metricAggregateFunction": "VALUE",
+					"metricPath": "Application Infrastructure Performance|AppServer|Custom Metrics|Performance Monitor|*|Network|RequestResponseTimeAverage|All",
+					"metricEvalDetail": {
+						"metricEvalDetailType": "BASELINE_TYPE",
+						"baselineCondition": "GREATER_THAN_BASELINE",
+						"baselineName": "Default Baseline",
+						"compareValue": 3,
+						"baselineUnit": "STANDARD_DEVIATIONS"
+					}
+				},
+				"triggerEnabled": false,
+				"minimumTriggers": 15
+			}],
+			"evalMatchingCriteria": {
+				"matchType": "ANY_NODE",
+				"value": null
+			}
+		}
+	}
+}
