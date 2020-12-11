@@ -2,7 +2,7 @@
     "name": "Agent Availability",
     "enabled": true,
     "useDataFromLastNMinutes": 60,
-    "waitTimeAfterViolation": 30,
+    "waitTimeAfterViolation": 35,
     "scheduleName": "Always",
     "affects": {
         "affectedEntityType": "TIER_NODE_HARDWARE",
