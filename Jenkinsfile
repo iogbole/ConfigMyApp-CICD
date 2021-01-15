@@ -30,7 +30,6 @@ node {
         }
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
-            
             sh """
             echo "ConfigMyApp..start"  
             export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
@@ -44,6 +43,7 @@ node {
             export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
             export CMA_HEALTH_RULES_ONLY=${params.CMA_HEALTH_RULES_ONLY}
             export CMA_OVERWRITE_HEALTH_RULES=${params.CMA_OVERWRITE_HEALTH_RULES}
+
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
