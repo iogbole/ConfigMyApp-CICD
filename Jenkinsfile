@@ -30,6 +30,7 @@ node {
         }
        stage('ConfigMyApp') {  
            withCredentials([usernamePassword(credentialsId: 'controller_credentials', passwordVariable: 'CMA_PASSWORD', usernameVariable: 'CMA_USERNAME')]) {
+            
             sh """
             echo "ConfigMyApp..start"  
             export CMA_APPLICATION_NAME=${params.CMA_APPLICATION_NAME}
