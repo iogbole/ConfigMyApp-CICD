@@ -5,7 +5,7 @@
         "rule_name": "getStatus_test2",
         "class_name": "com.appdynamics.health.Class",
         "class_matching_condition": "STARTS_WITH",
-        "method_name": "getStatus",
+        "method_name": "getStatus1",
         "method_matching_condition": "EQUALS",
         "priority": "10"
        }
