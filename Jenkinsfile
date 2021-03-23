@@ -4,13 +4,13 @@ properties(
  // [pipelineTriggers([githubPush()])]
   [parameters(
     [
-      string(defaultValue: 'Jenkins_API', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
+      string(defaultValue: 'Jenkins_API_Demo', description: '', name: 'CMA_APPLICATION_NAME', trim: false),
       choice(choices: ['configmyappdemo-20103n-m3lp0zmi.appd-cx.com', 'fieldlabs.saas.appdynamics.com'], description: 'Select AppDynamics Controller', name: 'CMA_CONTROLLER_HOST'),
       choice(choices: ['customer1', 'fieldlabs'], description: 'Select AppDynamics Account', name: 'CMA_ACCOUNT'),
       string(defaultValue: '8090', description: 'Controller Port', name: 'CMA_CONTROLLER_PORT', trim: true),
       booleanParam(defaultValue: 'false', description: 'Use HTTPS?', name: 'CMA_USE_HTTPS', trim: false),
       booleanParam(defaultValue: false, description: 'Include Server visibility', name: 'CMA_INCLUDE_SIM'),
-      booleanParam(defaultValue: false, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
+      booleanParam(defaultValue: true, description: 'Configure ONLY Buisness transactions', name: 'CMA_BT_ONLY'),
       booleanParam(defaultValue: false, description: 'Add Business Transactions', name: 'CMA_CONFIGURE_BT'),
       booleanParam(defaultValue: false, description: 'Include Database', name: 'CMA_INCLUDE_DATABASE'),
       string(defaultValue: 'ConfigMyApp', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
@@ -72,9 +72,9 @@ node {
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
-              ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh --no-upload-default-dashboard  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             else
-              ./start.sh  --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh --no-upload-default-dashboard  --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             fi
             echo "End script"
           """
