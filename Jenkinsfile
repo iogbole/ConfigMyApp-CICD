@@ -16,6 +16,7 @@ properties(
       string(defaultValue: 'ConfigMyApp', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
       booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES'),
       booleanParam(defaultValue: false, description: 'Configure ONLY Health Rules', name: 'CMA_HEALTH_RULES_ONLY')
+      booleanParam(defaultValue: false, description: 'Create dashboard?', name: 'CMA_UPLOAD_DEFAULT_DASHBOARD'),
 
     ])
   ]
@@ -43,6 +44,7 @@ node {
             export CMA_INCLUDE_DATABASE=${params.CMA_INCLUDE_DATABASE}
             export CMA_HEALTH_RULES_ONLY=${params.CMA_HEALTH_RULES_ONLY}
             export CMA_OVERWRITE_HEALTH_RULES=${params.CMA_OVERWRITE_HEALTH_RULES}
+            export CMA_UPLOAD_DEFAULT_DASHBOARD=${params.CMA_UPLOAD_DEFAULT_DASHBOARD}
 
             LOCATION=\$(curl -s https://api.github.com/repos/Appdynamics/ConfigMyApp/releases/latest \
             | grep "tag_name" \
@@ -69,12 +71,17 @@ node {
             if [ "\$CMA_BT_ONLY" = true ] || [ "\$CMA_CONFIGURE_BT" = true ]; then
               cp ${workspace}/bt_config/${params.CMA_APPLICATION_NAME}-configBT.json bt_config/configBT.json
             fi
+            
+            if [ "\$CMA_HEALTH_RULES_ONLY" = true ]; then
+              rm -r health_rules/*
+              cp -r ${workspace}/health_rules/${params.CMA_APPLICATION_NAME} health_rules
+            fi
 
             echo "Start script"
             if [ "\$CMA_INCLUDE_DATABASE" = true ]; then 
-              ./start.sh --no-upload-default-dashboard  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh  --include-database --database-name='${params.CMA_DATABASE_NAME}' --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             else
-              ./start.sh --no-upload-default-dashboard  --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
+              ./start.sh --overwrite-health-rules  --logo-name="logo.png" --background-name="background.jpg"
             fi
             echo "End script"
           """
