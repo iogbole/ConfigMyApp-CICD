@@ -1,5 +1,5 @@
 {
-    "name": "Standard Business Transaction: Error Rate Health EDIT",
+    "name": "Standard Business Transaction: Error Rate Health",
     "enabled": true,
     "useDataFromLastNMinutes": 30,
     "waitTimeAfterViolation": 30,
