@@ -14,7 +14,7 @@ pool:
 
 # Set variables once as shown below, use the UI ee
 variables:
-  CMA_APPLICATION_NAME: IoT_API_Demo
+  CMA_APPLICATION_NAME: Jenkins_API_Demo
   CMA_CONTROLLER_HOST: configmyappdemo-20103n-m3lp0zmi.appd-cx.com
   CMA_CONTROLLER_PORT: 8090
   CMA_ACCOUNT: customer1
@@ -22,7 +22,7 @@ variables:
   CMA_USERNAME: appd
   CMA_CONFIGURE_BT: false
   CMA_INCLUDE_SIM: true
-  CMA_BT_ONLY: true
+  CMA_BT_ONLY: false
   CMA_INCLUDE_DATABASE : true
   CMA_OVERWRITE_HEALTH_RULES: false
   CMA_DATABASE_NAME: ConfigMyApp
