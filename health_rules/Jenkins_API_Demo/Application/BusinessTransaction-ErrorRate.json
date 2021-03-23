@@ -1,7 +1,7 @@
 {
     "name": "Standard Business Transaction: Error Rate Health",
     "enabled": true,
-    "useDataFromLastNMinutes": 30,
+    "useDataFromLastNMinutes": 25,
     "waitTimeAfterViolation": 30,
     "scheduleName": "Always",
     "affects": {
