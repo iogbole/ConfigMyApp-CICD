@@ -20,10 +20,10 @@ variables:
   CMA_ACCOUNT: customer1
   CMA_USE_HTTPS: false
   CMA_USERNAME: appd
-  CMA_CONFIGURE_BT: true
-  CMA_INCLUDE_SIM: true
-  #CMA_BT_ONLY: false
-  #CMA_INCLUDE_DATABASE : false
+  CMA_CONFIGURE_BT: false
+  CMA_INCLUDE_SIM: false
+  CMA_BT_ONLY: false
+  CMA_INCLUDE_DATABASE : false
   #CMA_OVERWRITE_HEALTH_RULES: true
   #CMA_DATABASE_NAME: ConfigMyApp
   CMA_USE_BRANDING: true
