@@ -75,7 +75,7 @@ node {
             if [ "\$CMA_HEALTH_RULES_ONLY" = true ]; then
               echo "Copying health rules files..."
               rm -r health_rules/*
-              cp -r ${workspace}/health_rules/${params.CMA_APPLICATION_NAME} health_rules/
+              cp -r ${workspace}/health_rules/${params.CMA_APPLICATION_NAME}/ health_rules/
               ls health_rules/
               ./start.sh --logo-name="logo.png" --background-name="background.jpg"
               exit 0
