@@ -14,7 +14,7 @@ pool:
 
 # Set variables once as shown below, use the UI ee
 variables:
-  #CMA_APPLICATION_NAME: IoT_API
+  CMA_APPLICATION_NAME: IoT_API_Demo
   CMA_CONTROLLER_HOST: configmyappdemo-20103n-m3lp0zmi.appd-cx.com
   CMA_CONTROLLER_PORT: 8090
   CMA_ACCOUNT: customer1
