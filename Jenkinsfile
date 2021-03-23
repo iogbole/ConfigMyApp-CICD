@@ -15,7 +15,7 @@ properties(
       booleanParam(defaultValue: false, description: 'Include Database', name: 'CMA_INCLUDE_DATABASE'),
       string(defaultValue: 'ConfigMyApp', description: 'If Include DB, set DB collector name', name: 'CMA_DATABASE_NAME', trim: false),
       booleanParam(defaultValue: false, description: 'Overwrite Existing Health Rules', name: 'CMA_OVERWRITE_HEALTH_RULES'),
-      booleanParam(defaultValue: true, description: 'Configure ONLY Health Rules', name: 'CMA_HEALTH_RULES_ONLY'),
+      booleanParam(defaultValue: true, description: 'Configure only Health Rules', name: 'CMA_HEALTH_RULES_ONLY'),
       booleanParam(defaultValue: false, description: 'Create dashboard?', name: 'CMA_UPLOAD_DEFAULT_DASHBOARD')
 
     ])
