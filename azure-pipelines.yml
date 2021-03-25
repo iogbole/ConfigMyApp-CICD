@@ -74,8 +74,11 @@ steps:
       rm -r ../health_rules/*
       cp -r ../health_rules/${CMA_APPLICATION_NAME}/* health_rules/
       ls health_rules/
-      ./start.sh --health-rules-only --logo-name="logo-white.png" --background-name="background.jpg"
-      exit 0
+      ./start.sh --health-rules-only --no-bt-only --no-upload-default-dashboard
+    fi
+    
+    if [ "$CMA_UPLOAD_DEFAULT_DASHBOARD" = true ]; then
+      ./start.sh --no-health-rules-only --no-bt-only --logo-name="logo-white.png" --background-name="background.jpg" 
     fi
     
     
@@ -91,5 +94,7 @@ steps:
     CMA_DATABASE_NAME: $(CMA_DATABASE_NAME)
     CMA_OVERWRITE_HEALTH_RULES: $(CMA_OVERWRITE_HEALTH_RULES)
     CMA_USE_BRANDING: $(CMA_USE_BRANDING)
+    CMA_HEALTH_RULES_ONLY: $(CMA_HEALTH_RULES_ONLY)
+    CMA_UPLOAD_DEFAULT_DASHBOARD: $(CMA_UPLOAD_DEFAULT_DASHBOARD)
 
      
