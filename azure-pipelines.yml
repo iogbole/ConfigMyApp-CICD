@@ -14,19 +14,21 @@ pool:
 
 # Set variables once as shown below, use the UI ee
 variables:
-  CMA_APPLICATION_NAME: Jenkins_API_Demo
-  CMA_CONTROLLER_HOST: configmyappdemo-20103n-m3lp0zmi.appd-cx.com
+  CMA_APPLICATION_NAME: IoT_API
+  CMA_CONTROLLER_HOST: nbsdemo-2120nosshcontr-chvgikps.appd-cloudmachine.com
   CMA_CONTROLLER_PORT: 8090
   CMA_ACCOUNT: customer1
   CMA_USE_HTTPS: false
   CMA_USERNAME: appd
-  CMA_CONFIGURE_BT: false
+  CMA_CONFIGURE_BT: true
   CMA_INCLUDE_SIM: true
-  CMA_BT_ONLY: false
-  CMA_INCLUDE_DATABASE : false
+  CMA_BT_ONLY: true
+  CMA_INCLUDE_DATABASE : true
   CMA_OVERWRITE_HEALTH_RULES: false
   CMA_DATABASE_NAME: ConfigMyApp
   CMA_USE_BRANDING: true
+  CMA_UPLOAD_DEFAULT_DASHBOARD: true
+  CMA_HEALTH_RULES_ONLY: true
 steps:
 - script: |
     # Write your commands here
@@ -60,11 +62,23 @@ steps:
      echo CMA_CONFIGURE_BT = $CMA_CONFIGURE_BT
 
     if [ "$CMA_BT_ONLY" = true ] || [ "$CMA_CONFIGURE_BT" = true ]; then
-       cp ../bt_config/$CMA_APPLICATION_NAME-configBT.json bt_config/configBT.json
-       ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME"  --logo-name="logo-white.png" --background-name="background.jpg" 
+      echo "Copying business transaction rules..."
+      cp ../bt_config/$CMA_APPLICATION_NAME-configBT.json bt_config/configBT.json
+      ./start.sh  --include-database --database-name="$CMA_DATABASE_NAME" --no-upload-default-dashboard --no-health-rules-only
     else
        ./start.sh  --logo-name="logo.png" --background-name="background.jpg" 
     fi
+    
+    if [ "$CMA_HEALTH_RULES_ONLY" = true ]; then
+      echo "Copying health rules files..."
+      rm -r ../health_rules/*
+      cp -r ../health_rules/${CMA_APPLICATION_NAME}/* health_rules/
+      ls health_rules/
+      ./start.sh --health-rules-only --logo-name="logo-white.png" --background-name="background.jpg"
+      exit 0
+    fi
+    
+    
     echo "End script##"
   displayName: 'Run ConfigMyApp'
   env:
