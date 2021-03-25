@@ -23,7 +23,7 @@ variables:
   CMA_CONFIGURE_BT: true
   CMA_INCLUDE_SIM: true
   CMA_BT_ONLY: true
-  CMA_INCLUDE_DATABASE : true
+  CMA_INCLUDE_DATABASE : false
   CMA_OVERWRITE_HEALTH_RULES: false
   CMA_DATABASE_NAME: ConfigMyApp
   CMA_USE_BRANDING: true
@@ -71,8 +71,7 @@ steps:
     
     if [ "$CMA_HEALTH_RULES_ONLY" = true ]; then
       echo "Copying health rules files..."
-      rm -r ../health_rules/*
-      cp -r ../health_rules/${CMA_APPLICATION_NAME}/* health_rules/
+      cp ../healthrules/${CMA_APPLICATION_NAME}/* health_rules/
       ls health_rules/
       ./start.sh --health-rules-only --no-bt-only --no-upload-default-dashboard
     fi
